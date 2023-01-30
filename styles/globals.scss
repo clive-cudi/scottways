@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+  }
+}
+
+@import "./fonts.scss";
+
+html,
+body {}
+
+:root {
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-banner: 'Karla', sans-serif;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.content {
+  display: flex;
+  height: fit-content;
+  width: 100%;
+  flex-direction: column;
+}
+
+.default_section {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {}
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
