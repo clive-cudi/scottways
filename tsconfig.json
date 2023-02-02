@@ -21,10 +21,11 @@
       "@styles/*": ["./styles/*"],
       "@hooks/*": ["./hooks/*"],
       "@utils/*": ["./utils/*"],
-      "@types/*": ["./types/*"],
-      "@images/*": ["/images/*"]
+      "@customtypes/*": ["./types/*"],
+      "@images/*": ["/images/*"],
+      "@icons/*": ["/icons/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/assets/MenuIcon.jsx"],
   "exclude": ["node_modules"],
 }

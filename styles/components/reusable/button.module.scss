@@ -18,4 +18,12 @@
         cursor: pointer;
         transform: scale(1.02);
     }
+    &.variant_regular_light {
+        background: white;
+        color: black;
+    }
+    &.variant_regular_dark {
+        background: rgb(22, 22, 22);
+        color: white;
+    }
 }

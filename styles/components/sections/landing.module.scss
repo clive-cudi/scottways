@@ -44,3 +44,29 @@
         }
     }
 }
+
+@media (max-width: 840px) {
+    .landing {
+        .landing_wrapper {
+            .landing_intro_block {
+                padding: 10px;
+                p {
+                    font-size: 50px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .landing {
+        .landing_wrapper {
+            .landing_intro_block {
+                width: 100%;
+                p {
+                    font-size: 40px
+                }
+            }
+        }
+    }
+}
