@@ -82,7 +82,7 @@ export const Navbar = ({ isDOMReady }: NavBar_Props) => {
             <div className={`${styles.nav_col}`}>
                 <div className={`${styles.nav_links} ${styles[`show_${showNavBar}`]}`}>
                     <ul>
-                        {navLinks.map((lnk, ix) => <li key={ix}><a href={`${lnk.link}`}>{lnk.label}</a></li>)}
+                        {navLinks.map((lnk, ix) => <li key={ix}><a href={`${lnk.link}`} onClick={() => {setShowNavBar(false)}}>{lnk.label}</a></li>)}
                     </ul>
                 </div>
                 <button className={styles.nav_toggle_btn} onClick={() => {toggleShowNavBar()}}>
