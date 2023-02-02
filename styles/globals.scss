@@ -2,9 +2,14 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
   &::-webkit-scrollbar {
     display: none;
     width: 0px;
+  }
+  &::selection {
+    color: white;
+    background: var(--primary-color);
   }
 }
 

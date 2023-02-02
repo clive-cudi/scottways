@@ -9,7 +9,7 @@ interface Landing_Props extends SectionFrame {
 
 export const Landing = ({ bannerMessage }: Landing_Props): JSX.Element => {
     return (
-        <section className={`default_section ${styles.landing}`}>
+        <section className={`default_section ${styles.landing}`} id={"home"}>
             <div className={styles.landing_wrapper} style={{backgroundImage: `url(${bg_image.src})`}}>
                 <div className={styles.landing_bg_filter}></div>
                 <div className={styles.landing_content}>

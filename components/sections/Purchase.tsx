@@ -1,3 +1,4 @@
+import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from "@styles/components/sections/purchase.module.scss";
 import type { SectionFrame, availablePayments, PurchaseSubscription } from "@customtypes/index";
 import Image from "next/image";
@@ -15,11 +16,12 @@ export interface Purchase_Props extends SectionFrame {
         api_key: string
     },
     features: string[]
+    parentDivProps?: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
 }
 
-export const Purchase = ({ label, variant, amount, supportedPayments, connectionsTag, paypalConfig, features }: Purchase_Props): JSX.Element => {
+export const Purchase = ({ label, variant, amount, supportedPayments, connectionsTag, paypalConfig, features, parentDivProps }: Purchase_Props): JSX.Element => {
     return (
-        <section className={`default_section ${styles.purchase_section_wrapper} ${styles[`variant_${variant}`]}`}>
+        <section className={`default_section ${styles.purchase_section_wrapper} ${styles[`variant_${variant}`]}`} {...parentDivProps}>
             <div className={styles.section_col}>
                 <div className={styles.section_col_image}>
                     <Image src={`/images/remote_1.webp`} alt={`${variant}`} width={"100"} height={"100"} />

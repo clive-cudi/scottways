@@ -27,12 +27,13 @@ export default function Home() {
       },
       supportedPayments: ['american', 'discover', 'paypal'],
       background: "",
-      height: ""
+      height: "",
+      parentDivProps: {id: "services"}
     },
     {
       variant: "basic",
       amount: 1,
-      connectionsTag: "36 hrs",
+      connectionsTag: "ONE CONNECTION",
       features: [
         "Fast Customer Service",
         "98% uptime",
@@ -52,7 +53,7 @@ export default function Home() {
     {
       variant: "standard",
       amount: 1,
-      connectionsTag: "36 hrs",
+      connectionsTag: "TWO CONNECTIONS",
       features: [
         "Fast Customer Service",
         "98% uptime",
@@ -72,7 +73,7 @@ export default function Home() {
     {
       variant: "premium",
       amount: 1,
-      connectionsTag: "36 hrs",
+      connectionsTag: "3 CONNECTIONS (Best Seller)",
       features: [
         "Fast Customer Service",
         "98% uptime",
@@ -92,7 +93,7 @@ export default function Home() {
     {
       variant: "gold",
       amount: 1,
-      connectionsTag: "36 hrs",
+      connectionsTag: "4 CONNECTIONS",
       features: [
         "Fast Customer Service",
         "98% uptime",

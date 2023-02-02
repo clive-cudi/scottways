@@ -5,7 +5,7 @@ interface Contact_Props extends SectionFrame {}
 
 export const Contact = ({}: Contact_Props): JSX.Element => {
     return (
-        <section className={`default_section`}>
+        <section className={`default_section`} id={"contact"}>
 
         </section>
     )

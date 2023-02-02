@@ -5,7 +5,7 @@ interface About_Props extends SectionFrame {}
 
 export const About = ({}: About_Props): JSX.Element => {
     return (
-        <section className={`default_section`}>
+        <section className={`default_section`} id={"about"}>
 
         </section>
     )
