@@ -14,7 +14,7 @@ export const About = ({}: About_Props): JSX.Element => {
                     <p>Great support system from our team at any time.</p>
                 </div>
                 <div className={styles.about_info_col}>
-                    <p>Multiple auto updates so that you don't miss out</p>
+                    <p>Multiple auto updates so that you don&apos;t miss out</p>
                 </div>
                 <div className={styles.about_info_col}>
                     <p>Service automations to avoid interruptions</p>
