@@ -1,0 +1,11 @@
+.supported_services {
+    height: 50vh;
+    .supported_services_content {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        padding: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+}
