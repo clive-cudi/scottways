@@ -25,7 +25,7 @@ export const Purchase = ({ label, variant, amount, supportedPayments, connection
         <section className={`default_section ${styles.purchase_section_wrapper} ${styles[`variant_${variant}`]}`} {...parentDivProps}>
             <div className={styles.section_col}>
                 <div className={styles.section_col_image}>
-                    <Image src={posterImg ?? ""} alt={`${variant}`} width={"100"} height={"100"} />
+                    <Image src={posterImg ?? ""} alt={`${variant}`} fill={true} />
                 </div>
             </div>
             <div className={styles.section_col}>

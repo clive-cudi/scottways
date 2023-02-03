@@ -9,14 +9,14 @@
         .section_col_image {
             display: flex;
             height: 300px;
-            width: 300px;
+            width: 400px;
             align-items: center;
             justify-content: center;
             position: relative;
             img {
                 height: 100%;
                 width: 100%;
-                object-fit: contain;
+                object-fit: cover;
             }
         }
         .purchase_content {

@@ -28,6 +28,7 @@ export default function Home() {
       supportedPayments: ['american', 'discover', 'paypal'],
       background: "",
       height: "",
+      posterImg: "/images/remote-fp.jpg",
       parentDivProps: {id: "services"}
     },
     {
@@ -48,7 +49,8 @@ export default function Home() {
       },
       supportedPayments: ['american', 'discover', 'paypal'],
       background: "",
-      height: ""
+      height: "",
+      posterImg: "/images/remote-one.jpg"
     },
     {
       variant: "standard",
@@ -68,7 +70,8 @@ export default function Home() {
       },
       supportedPayments: ['american', 'discover', 'paypal'],
       background: "",
-      height: ""
+      height: "",
+      posterImg: "/images/remote-gray-scale.jpg"
     },
     {
       variant: "premium",
@@ -88,7 +91,8 @@ export default function Home() {
       },
       supportedPayments: ['american', 'discover', 'paypal'],
       background: "",
-      height: ""
+      height: "",
+      posterImg: "/images/remote_1.webp"
     },
     {
       variant: "gold",
@@ -108,7 +112,8 @@ export default function Home() {
       },
       supportedPayments: ['american', 'discover', 'paypal'],
       background: "",
-      height: ""
+      height: "",
+      posterImg: "/images/cinema-fp.jpg"
     }
   ], [])
 
@@ -121,9 +126,9 @@ export default function Home() {
         <Navbar isDOMReady={isContentLoaded} />
         <Landing />
         {purchaseProps.map((purchase_domain, index) => <Purchase key={index} {...purchase_domain} />)}
+        <SupportedServices services={[]} />
         <About />
         <Contact />
-        <SupportedServices />
       </div>
     </div>
   )
