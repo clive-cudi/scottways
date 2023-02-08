@@ -24,7 +24,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
         let mailDetails = {
             from: `${process.env.SENDER_EMAIL}`,
-            to: email,
+            to: `${process.env.RECEIVER_EMAIL}`,
             subject: "New Message. Scottways TV.",
             text: `
                 Message from Scottways TV website.
@@ -50,6 +50,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             message: "Message sent successfully!!"
         })
     } catch(e) {
+        console.log(e);
         return res.status(400).json({
             success: false,
             message: "Couldn't send message!!"
