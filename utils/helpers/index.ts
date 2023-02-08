@@ -1,4 +1,5 @@
 import type { availablePayments } from "@customtypes/index";
+import { EMAIL_REGEX } from "./constants";
 
 export function mapPaymentVendorToIcon(vendor: availablePayments): string {
     switch (vendor) {
@@ -14,3 +15,12 @@ export function mapPaymentVendorToIcon(vendor: availablePayments): string {
             return "/icons/visa-icon.png";
     }
 }
+
+export const validateEmail = (email: string) => {
+    return email.match(
+        EMAIL_REGEX
+    );
+};
+
+
+export { EMAIL_REGEX } from "./constants";

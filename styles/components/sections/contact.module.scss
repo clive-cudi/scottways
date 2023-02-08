@@ -1,0 +1,48 @@
+.contact {
+    .contact_content {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        row-gap: 40px;
+        form {
+            display: flex;
+            height: fit-content;
+            width: 100%;
+            flex-direction: column;
+            row-gap: 20px;
+        }
+        .contact_strip {
+            display: flex;
+            height: fit-content;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            h2 {
+                font-family: var(--font-purchase-title);
+                font-size: 26px;
+            }
+            textarea {
+                display: flex;
+                height: 80px;
+                width: 100%;
+                max-width: 400px;
+                padding: 6px;
+                outline: none;
+                resize: none;
+                border: 1px solid rgb(176, 176, 176);
+                font-family: var(--font-banner);
+                transition-timing-function: ease-in-out;
+                transition-duration: 0.2s;
+                &:hover {
+                    border: 1px solid black;
+                }
+                &:focus {
+                    border: 1px solid var(--primary-color);
+                }
+            }
+        }
+    }
+}
