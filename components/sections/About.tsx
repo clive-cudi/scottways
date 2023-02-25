@@ -20,7 +20,7 @@ export const About = ({}: About_Props): JSX.Element => {
                     <p>Service automations to avoid interruptions</p>
                 </div>
                 <div className={styles.about_info_col}>
-                    <p>$* Hr refund policy</p>
+                    <p>24 Hr refund policy</p>
                 </div>
             </div>
         </section>
