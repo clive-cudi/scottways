@@ -35,6 +35,9 @@
                 font-family: var(--font-banner);
                 font-size: 30px;
             }
+            &:hover {
+                cursor: pointer;
+            }
         }
         .nav_links {
             display: flex;
@@ -91,7 +94,9 @@
         }
     }
     &.nav_wrapper_checkout {
+        background: white;
         border-bottom: 1px solid #0e141638;
+        position: relative;
         .nav_col {
             .nav_logo_wrapper {
                 h1 {
@@ -113,7 +118,14 @@
             .nav_toggle_btn {
                 color: #000000;
                 svg {
-                    color: #000000;
+                    path {
+                        fill: #000000;
+                    }
+                }
+                &:hover {
+                    svg path {
+                        fill: white;
+                    }
                 }
             }
         }
@@ -162,6 +174,26 @@
             }
             .nav_toggle_btn {
                 display: flex;
+                svg {
+                    stroke: #000000;
+                }
+            }
+        }
+        &.nav_wrapper_checkout {
+            position: fixed;
+            .nav_col {
+                .nav_links {
+                    background: rgba(255, 255, 255, 0.802);
+                    backdrop-filter: blur(4px);
+                    -webkit-backdrop-filter: blur(4px);
+                    ul {
+                        li {
+                            a {
+                                color: #000000;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

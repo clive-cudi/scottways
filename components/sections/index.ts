@@ -3,6 +3,7 @@ export { Contact } from "./Contact";
 export { Landing } from "./Landing";
 export { Purchase } from "./Purchase";
 export { SupportedServices } from "./SupportedServices";
+export { CheckOut } from "./Checkout";
 
 
 

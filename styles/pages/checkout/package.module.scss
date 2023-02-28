@@ -1,7 +1,78 @@
-.section_col {
-    display: flex;
-    height: 100%;
-    width: 50%;
-    align-items: center;
-    justify-content: center;
+.checkout_page_section {
+    height: fit-content;
+    margin-top: 80px;
+    .section_col {
+        display: flex;
+        height: 100vh;
+        width: 50%;
+        justify-content: center;
+        padding: 20px;
+        .section_col_image {
+            display: flex;
+            height: 300px;
+            width: 400px;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        &:first-child {
+            justify-content: flex-start;
+            flex-direction: column;
+            align-items: center;
+        }
+        .section_col_package_info {
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            padding: 20px;
+            .section_col_package_info_strip {
+                display: flex;
+                height: fit-content;
+                margin: 10px 0px 10px 0px;
+                span {
+                    margin: 0px 10px 0px 0px;
+                    font-family: var(--font-banner);
+                    font-weight: 300;
+                }
+                h3 {
+                    font-size: 16px;
+                    font-family: var(--font-banner);
+                }
+                &.package_info_feature_list {
+                    flex-direction: column;
+                }
+                ul {
+                    font-family: var(--font-banner);
+                }
+                .package_info_title {
+                    font-weight: 600;
+                    font-size: 24px;
+                    text-decoration: underline;
+                }
+            }
+        }
+        .pay {
+            display: flex;
+            width: 60%;
+            z-index: 1;
+        }
+        .paypal_init_loading {
+            font-family: var(--font-banner);
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .checkout_page_section {
+        flex-direction: column;
+        .section_col {
+            height: fit-content;
+            width: 100%;
+        }
+    }
 }

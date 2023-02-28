@@ -4,14 +4,16 @@ import type { NavLink } from "@customtypes/index";
 import Image from "next/image";
 import { CloseIcon } from "../assets/CloseIcon";
 import { MenuIcon} from "../assets/MenuIcon";
+import { useRouter } from "next/router";
 
 interface NavBar_Props {
     isDOMReady?: boolean
     navLinksOverride?: NavLink[],
-    variant?: "checkout" | "main"
+    variant?: "checkout" | "main",
+    className?: string
 }
 
-export const Navbar = ({ isDOMReady, navLinksOverride, variant }: NavBar_Props) => {
+export const Navbar = ({ isDOMReady, navLinksOverride, variant, className }: NavBar_Props) => {
     const navLinks = useMemo<NavLink[]>(() => navLinksOverride ?? [
         {
             label: "Home",
@@ -36,6 +38,7 @@ export const Navbar = ({ isDOMReady, navLinksOverride, variant }: NavBar_Props) 
     ], []);
     const [showNavBar, setShowNavBar] = useState<boolean>(false);
     const [isNavScroll, setIsNavScroll] = useState<boolean>(false);
+    const router = useRouter();
 
     function toggleShowNavBar(): void {
         if (showNavBar === true) {
@@ -75,9 +78,9 @@ export const Navbar = ({ isDOMReady, navLinksOverride, variant }: NavBar_Props) 
     }, [])
 
     return (
-        <nav className={`${styles.nav_wrapper} ${styles[`scrolled_${isNavScroll}`]} ${styles[`nav_wrapper_${variant}`]}`}>
+        <nav className={`${styles.nav_wrapper} ${styles[`scrolled_${isNavScroll}`]} ${styles[`nav_wrapper_${variant}`]} ${className}`}>
             <div className={styles.nav_col}>
-                <div className={styles.nav_logo_wrapper}>
+                <div className={styles.nav_logo_wrapper} onClick={() => {router.push("/")}}>
                     <h1>SCOTTWAYS TV</h1>
                 </div>
             </div>
