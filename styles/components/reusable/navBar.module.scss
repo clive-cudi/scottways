@@ -90,6 +90,34 @@
             }
         }
     }
+    &.nav_wrapper_checkout {
+        border-bottom: 1px solid #0e141638;
+        .nav_col {
+            .nav_logo_wrapper {
+                h1 {
+                    color: #000000;
+                }
+            }
+            .nav_links {
+                ul {
+                    li {
+                        a {
+                            color: #000000;
+                            &:hover {
+                                color: var(--primary-color-b);
+                            }
+                        }
+                    }
+                }
+            }
+            .nav_toggle_btn {
+                color: #000000;
+                svg {
+                    color: #000000;
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 1180px) {

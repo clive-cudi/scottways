@@ -7,10 +7,12 @@ import { MenuIcon} from "../assets/MenuIcon";
 
 interface NavBar_Props {
     isDOMReady?: boolean
+    navLinksOverride?: NavLink[],
+    variant?: "checkout" | "main"
 }
 
-export const Navbar = ({ isDOMReady }: NavBar_Props) => {
-    const navLinks = useMemo<NavLink[]>(() => [
+export const Navbar = ({ isDOMReady, navLinksOverride, variant }: NavBar_Props) => {
+    const navLinks = useMemo<NavLink[]>(() => navLinksOverride ?? [
         {
             label: "Home",
             link: "#home",
@@ -73,7 +75,7 @@ export const Navbar = ({ isDOMReady }: NavBar_Props) => {
     }, [])
 
     return (
-        <nav className={`${styles.nav_wrapper} ${styles[`scrolled_${isNavScroll}`]}`}>
+        <nav className={`${styles.nav_wrapper} ${styles[`scrolled_${isNavScroll}`]} ${styles[`nav_wrapper_${variant}`]}`}>
             <div className={styles.nav_col}>
                 <div className={styles.nav_logo_wrapper}>
                     <h1>SCOTTWAYS TV</h1>
