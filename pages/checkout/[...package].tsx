@@ -15,7 +15,7 @@ export default function CheckoutPage() {
     const router = useRouter();
     const checkoutPackage = router.query.package as PurchaseSubscription[];
     const paypalOptions: ReactPayPalScriptOptions= {
-        "client-id": process.env.PAYPAL_CLIENT_ID as string,
+        "client-id": process.env.APP_ENV = "dev" ? process.env.PAYPAL_CLIENT_ID as string : process.env.PAYPAL_PRODUCTION_CLIENT_ID as string,
         "data-react-paypal-script-id": ""
     };
     const [targetPackage, setTargetPackage] = useState<Purchase_Props>();
