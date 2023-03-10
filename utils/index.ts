@@ -26,7 +26,7 @@ export const PurchaseOptions: Purchase_Props[] = [
     },
     {
       variant: "basic",
-      amount: 1,
+      amount: 12,
       connectionsTag: "ONE CONNECTION",
       features: [
         "Fast Customer Service",
@@ -47,7 +47,7 @@ export const PurchaseOptions: Purchase_Props[] = [
     },
     {
       variant: "standard",
-      amount: 1,
+      amount: 15,
       connectionsTag: "TWO CONNECTIONS",
       features: [
         "Fast Customer Service",
@@ -68,7 +68,7 @@ export const PurchaseOptions: Purchase_Props[] = [
     },
     {
       variant: "premium",
-      amount: 1,
+      amount: 17,
       connectionsTag: "3 CONNECTIONS (Best Seller)",
       features: [
         "Fast Customer Service",
@@ -89,7 +89,7 @@ export const PurchaseOptions: Purchase_Props[] = [
     },
     {
       variant: "gold",
-      amount: 1,
+      amount: 19,
       connectionsTag: "4 CONNECTIONS",
       features: [
         "Fast Customer Service",
