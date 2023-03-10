@@ -56,7 +56,25 @@ export const CheckOut = ({ checkoutPackage }: checkOut_Props): JSX.Element => {
                 </div>
             </div>
             <div className={styles.section_col}>
-                {isPending ? <span className={styles.paypal_init_loading}>Initializing Paypal...</span> : <PayPalButtons className={styles.pay} />}
+                {isPending ? <span className={styles.paypal_init_loading}>Initializing Paypal...</span> : <PayPalButtons createOrder={(data, actions) => {
+                    return actions.order.create({
+                        purchase_units: [
+                            {
+                                amount: {
+                                    value: `${targetPackage?.amount}`
+                                }
+                            }
+                        ]
+                    })
+                }} onApprove={async (data, actions) => {
+                    return actions.order?.capture().then((details) => {
+                        console.log(details);
+                        alert(`Transaction completed by ${details.payer.name?.given_name ?? ""}`);
+                    }).catch((err) => {
+                        console.log(err);
+                        alert(`An Error Occurred\n${err.message}`)
+                    })
+                }} className={styles.pay} />}
             </div>
         </section>
     )
