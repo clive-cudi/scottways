@@ -1,6 +1,28 @@
 import { createTransport } from "nodemailer";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { validateEmail, sendMailHelper } from "@/utils";
+import { validateEmail } from "@/utils";
+import Mail from "nodemailer/lib/mailer";
+import SMTPTransport from "nodemailer/lib/smtp-transport";
+
+async function sendMailHelper(mailOptions: Mail.Options & {SENDER_EMAIL: string, SENDER_PASS: string}): Promise<SMTPTransport.SentMessageInfo> {
+    return new Promise((resolve, reject) => {
+        const mailTransporter = createTransport({
+            service: "gmail",
+            auth: {
+                user: `${mailOptions.SENDER_EMAIL}`,
+                pass: `${mailOptions.SENDER_PASS}`
+            }
+        });
+
+        mailTransporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(info)
+            }
+        })
+    })
+}
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
