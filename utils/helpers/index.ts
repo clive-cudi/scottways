@@ -1,6 +1,5 @@
 import type { availablePayments } from "@customtypes/index";
 import { EMAIL_REGEX } from "./constants";
-import SMTPTransport from "nodemailer";
 import { createTransport } from "nodemailer";
 
 export function mapPaymentVendorToIcon(vendor: availablePayments): string {
