@@ -74,7 +74,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 from: `${SENDER_EMAIL}`,
                 to: `${RECEIVER_EMAIL}`,
                 subject: custom.subject,
-                text: `${custom.message}`
+                html: `${custom.message}`
             }
     
             // mailTransporter.sendMail(mailDetails, (err, data) => {
