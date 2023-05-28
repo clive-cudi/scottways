@@ -1,6 +1,6 @@
 import { createTransport } from "nodemailer";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { validateEmail } from "@/utils";
+import { validateEmail, sendMailHelper } from "@/utils";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -48,26 +48,36 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 text: `${custom.message}`
             }
     
-            mailTransporter.sendMail(mailDetails, (err, data) => {
-                if (err) {
-                    throw err
-                }
+            // mailTransporter.sendMail(mailDetails, (err, data) => {
+            //     if (err) {
+            //         throw err
+            //     }
     
-                console.log(data);
+            //     console.log(data);
                 
+            //     return res.status(200).json({
+            //         success: true,
+            //         message: "Message sent successfully!!",
+            //         data
+            //     })
+            // });
+
+            sendMailHelper({...mailDetails, SENDER_EMAIL: SENDER_EMAIL, SENDER_PASS: SENDER_PASS}).then((res_) => {
+                console.log(res_);
                 return res.status(200).json({
-                    success: true,
-                    message: "Message sent successfully!!",
-                    data
-                })
+                            success: true,
+                            message: "Message sent successfully!!",
+                            data: res_
+                        });
+            }).catch((err) => {
+                throw new Error(err);
             })
         }
 
-        if (!validateEmail(email)) {
-            throw new Error("Invalid Email!!")
-        }
-
         if (!custom?.status) {
+            if (!validateEmail(email)) {
+                throw new Error("Invalid Email!!")
+            }
             let mailDetails = {
                 from: `${SENDER_EMAIL}`,
                 to: `${RECEIVER_EMAIL}`,
@@ -81,18 +91,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                         Message: ${message}
                 `
             }
-    
-            mailTransporter.sendMail(mailDetails, (err, data) => {
-                if (err) {
-                    throw err
-                }
-    
-                console.log(data);
+
+            sendMailHelper({...mailDetails, SENDER_EMAIL: SENDER_EMAIL, SENDER_PASS: SENDER_PASS}).then((res_) => {
+                console.log(res_);
                 return res.status(200).json({
-                    success: true,
-                    message: "Message sent successfully!!",
-                    data
-                });
+                            success: true,
+                            message: "Message sent successfully!!",
+                            data: res_
+                        });
+            }).catch((err) => {
+                throw new Error(err);
             })
         }
     } catch(e) {
