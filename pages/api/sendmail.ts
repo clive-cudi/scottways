@@ -4,7 +4,7 @@ import { validateEmail } from "@/utils";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const { email, phone, message, custom }: {email: string, phone: string, message: string, custom: {
+        const { email, phone, message, custom }: {email: string, phone: string, message: string, custom?: {
             status: boolean,
             sender: string,
             senderPass: string,
@@ -13,7 +13,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             subject: string
         }} = req.body;
 
-        if (custom.status === true) {
+        console.log("MARJKER")
+        if (custom?.status === true) {
             // validate customization fields
             const {status, message, ...requiredFields } = custom;
 
@@ -24,9 +25,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 });
             }
         }
-        const SENDER_EMAIL = `${custom.status === true ? custom.sender : process.env.SENDER_EMAIL}`;
-        const SENDER_PASS = `${custom.status === true ? custom.senderPass : process.env.SENDER_PASS}`
-        const RECEIVER_EMAIL = `${custom.status === true ? custom.receiver : process.env.RECEIVER_EMAIL}`;
+        console.log("Marker")
+        const SENDER_EMAIL = `${custom?.status === true ? custom.sender : process.env.SENDER_EMAIL}`;
+        const SENDER_PASS = `${custom?.status === true ? custom.senderPass : process.env.SENDER_PASS}`
+        const RECEIVER_EMAIL = `${custom?.status === true ? custom.receiver : process.env.RECEIVER_EMAIL}`;
         const mailTransporter = createTransport({
             service: "gmail",
             auth: {
@@ -40,7 +42,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             pass: `${SENDER_PASS}`
         });
 
-        if (custom.status === true) {
+        if (custom?.status === true) {
             let mailDetails = {
                 from: `${SENDER_EMAIL}`,
                 to: `${RECEIVER_EMAIL}`,

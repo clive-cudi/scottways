@@ -17,9 +17,9 @@ export function mapPaymentVendorToIcon(vendor: availablePayments): string {
 }
 
 export const validateEmail = (email: string) => {
-    return email.match(
+    return email ? email.match(
         EMAIL_REGEX
-    );
+    ) : null;
 };
 
 
