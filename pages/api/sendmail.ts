@@ -13,7 +13,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             subject: string
         }} = req.body;
 
-        console.log("MARJKER")
         if (custom?.status === true) {
             // validate customization fields
             const {status, message, ...requiredFields } = custom;
@@ -25,7 +24,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 });
             }
         }
-        console.log("Marker")
         const SENDER_EMAIL = `${custom?.status === true ? custom.sender : process.env.SENDER_EMAIL}`;
         const SENDER_PASS = `${custom?.status === true ? custom.senderPass : process.env.SENDER_PASS}`
         const RECEIVER_EMAIL = `${custom?.status === true ? custom.receiver : process.env.RECEIVER_EMAIL}`;
@@ -57,11 +55,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     
                 console.log(data);
                 
-            })
-    
-            return res.status(200).json({
-                success: true,
-                message: "Message sent successfully!!"
+                return res.status(200).json({
+                    success: true,
+                    message: "Message sent successfully!!",
+                    data
+                })
             })
         }
 
@@ -69,33 +67,34 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             throw new Error("Invalid Email!!")
         }
 
-        let mailDetails = {
-            from: `${SENDER_EMAIL}`,
-            to: `${RECEIVER_EMAIL}`,
-            subject: "New Message. Scottways TV.",
-            text: `
-                Message from Scottways TV website.
-                
-                Details are as follows:
-                    Email: ${email},
-                    PhoneNumber: ${phone},
-                    Message: ${message}
-            `
-        }
-
-        mailTransporter.sendMail(mailDetails, (err, data) => {
-            if (err) {
-                throw err
+        if (!custom?.status) {
+            let mailDetails = {
+                from: `${SENDER_EMAIL}`,
+                to: `${RECEIVER_EMAIL}`,
+                subject: "New Message. Scottways TV.",
+                text: `
+                    Message from Scottways TV website.
+                    
+                    Details are as follows:
+                        Email: ${email},
+                        PhoneNumber: ${phone},
+                        Message: ${message}
+                `
             }
-
-            console.log(data);
-            
-        })
-
-        return res.status(200).json({
-            success: true,
-            message: "Message sent successfully!!"
-        });
+    
+            mailTransporter.sendMail(mailDetails, (err, data) => {
+                if (err) {
+                    throw err
+                }
+    
+                console.log(data);
+                return res.status(200).json({
+                    success: true,
+                    message: "Message sent successfully!!",
+                    data
+                });
+            })
+        }
     } catch(e) {
         console.log(e);
         return res.status(400).json({
