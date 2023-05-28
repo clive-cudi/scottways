@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { validateEmail } from "@/utils";
 import Mail from "nodemailer/lib/mailer";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
+import NextCors from "nextjs-cors";
 
 async function sendMailHelper(mailOptions: Mail.Options & {SENDER_EMAIL: string, SENDER_PASS: string}): Promise<SMTPTransport.SentMessageInfo> {
     return new Promise((resolve, reject) => {
@@ -24,7 +25,7 @@ async function sendMailHelper(mailOptions: Mail.Options & {SENDER_EMAIL: string,
     })
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const { email, phone, message, custom }: {email: string, phone: string, message: string, custom?: {
             status: boolean,
@@ -34,6 +35,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             message: string,
             subject: string
         }} = req.body;
+
+        await NextCors(req, res, {
+            methods: ['GET', 'POST'],
+            origin: '*',
+            optionsSuccessStatus: 200
+        });
 
         if (custom?.status === true) {
             // validate customization fields
