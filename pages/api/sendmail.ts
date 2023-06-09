@@ -5,14 +5,14 @@ import Mail from "nodemailer/lib/mailer";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
 import NextCors from "nextjs-cors";
 
-async function sendMailHelper(mailOptions: Mail.Options & {SENDER_EMAIL: string, SENDER_PASS: string}): Promise<SMTPTransport.SentMessageInfo> {
+async function sendMailHelper(mailOptions: Mail.Options & {SENDER_EMAIL: string, SENDER_PASS: string}, transporterConfig?: string | SMTPTransport | SMTPTransport.Options | undefined): Promise<SMTPTransport.SentMessageInfo> {
     return new Promise((resolve, reject) => {
-        const mailTransporter = createTransport({
+        const mailTransporter = createTransport(transporterConfig ?? {
             service: "gmail",
             auth: {
                 user: `${mailOptions.SENDER_EMAIL}`,
                 pass: `${mailOptions.SENDER_PASS}`
-            }
+            },
         });
 
         mailTransporter.sendMail(mailOptions, (err, info) => {
@@ -28,12 +28,13 @@ async function sendMailHelper(mailOptions: Mail.Options & {SENDER_EMAIL: string,
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const { email, phone, message, custom }: {email: string, phone: string, message: string, custom?: {
-            status: boolean,
+            status: boolean,    
             sender: string,
             senderPass: string,
             receiver: string,
             message: string,
-            subject: string
+            subject: string,
+            customConfig: string | SMTPTransport | SMTPTransport.Options | undefined
         }} = req.body;
 
         await NextCors(req, res, {
@@ -56,18 +57,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const SENDER_EMAIL = `${custom?.status === true ? custom.sender : process.env.SENDER_EMAIL}`;
         const SENDER_PASS = `${custom?.status === true ? custom.senderPass : process.env.SENDER_PASS}`
         const RECEIVER_EMAIL = `${custom?.status === true ? custom.receiver : process.env.RECEIVER_EMAIL}`;
-        const mailTransporter = createTransport({
-            service: "gmail",
-            auth: {
-                user: `${SENDER_EMAIL}`,
-                pass: `${SENDER_PASS}`
-            }
-        });
 
-        console.log({
-            user: `${SENDER_EMAIL}`,
-            pass: `${SENDER_PASS}`
-        });
+        // console.log({
+        //     user: `${SENDER_EMAIL}`,
+        //     pass: `${SENDER_PASS}`
+        // });
 
         if (custom?.status === true) {
             let mailDetails = {
@@ -91,7 +85,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             //     })
             // });
 
-            sendMailHelper({...mailDetails, SENDER_EMAIL: SENDER_EMAIL, SENDER_PASS: SENDER_PASS}).then((res_) => {
+            sendMailHelper({...mailDetails, SENDER_EMAIL: SENDER_EMAIL, SENDER_PASS: SENDER_PASS}, custom.customConfig).then((res_) => {
                 console.log(res_);
                 return res.status(200).json({
                             success: true,
